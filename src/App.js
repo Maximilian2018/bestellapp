@@ -1,6 +1,7 @@
 import React from 'react'
 import ToggleButton from './components/ToggleButton'
 //import CollapseButton from './components/CollapseButton'
+import uid from 'uid'
 import styled from 'react-emotion'
 
 const Grid = styled('div')`
@@ -15,14 +16,14 @@ export default class Example extends React.Component {
     this.toggle = this.toggle.bind(this)
     this.state = {
       buttons: [
-        { text: 'Gazpacho', isSelected: false, id: 1 },
-        { text: 'Minestrone', isSelected: false, id: 2 },
-        { text: 'Vitello Tonnato', isSelected: false, id: 3 },
-        { text: 'ZwiebelTarte', isSelected: false, id: 4 },
-        { text: 'Salat Sommer', isSelected: false, id: 5 },
-        { text: 'Käseplatte', isSelected: false, id: 6 },
-        { text: 'Eier Benedikt', isSelected: false, id: 7 },
-        { text: 'Carpaccio', isSelected: false, id: 8 }
+        { text: 'Gazpacho', isSelected: false, id: uid() },
+        { text: 'Minestrone', isSelected: false, id: uid() },
+        { text: 'Vitello Tonnato', isSelected: false, id: uid() },
+        { text: 'ZwiebelTarte', isSelected: false, id: uid() },
+        { text: 'Salat Sommer', isSelected: false, id: uid() },
+        { text: 'Käseplatte', isSelected: false, id: uid() },
+        { text: 'Eier Benedikt', isSelected: false, id: uid() },
+        { text: 'Carpaccio', isSelected: false, id: uid() }
       ]
     }
   }
