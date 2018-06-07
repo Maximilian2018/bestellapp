@@ -1,7 +1,11 @@
 import React from 'react'
+import { createStore } from 'redux'
+import reducer from './reducers/reducer'
+import initialState from './reducers/initialState'
+import { toggleButton } from './actions'
+
 import ToggleButton from './components/ToggleButton'
 //import CollapseButton from './components/CollapseButton'
-import uid from 'uid'
 import styled from 'react-emotion'
 
 const Grid = styled('div')`
@@ -9,50 +13,23 @@ const Grid = styled('div')`
   grid-gap: 10px;
 `
 
+const store = createStore(reducer, initialState)
+
 export default class Example extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      buttons: [
-        { text: 'Gazpacho', isSelected: false, id: uid() },
-        { text: 'Minestrone', isSelected: false, id: uid() },
-        { text: 'Vitello Tonnato', isSelected: false, id: uid() },
-        { text: 'ZwiebelTarte', isSelected: false, id: uid() },
-        { text: 'Salat Sommer', isSelected: false, id: uid() },
-        { text: 'Käseplatte', isSelected: false, id: uid() },
-        { text: 'Eier Benedikt', isSelected: false, id: uid() },
-        { text: 'Carpaccio', isSelected: false, id: uid() }
-      ]
-    }
-  }
-
-  toggle(id) {
-    const selectedIndex = this.state.buttons.findIndex(
-      button => button.id === id
-    )
-
-    const selectedItem = this.state.buttons[selectedIndex]
-
-    this.setState({
-      buttons: [
-        ...this.state.buttons.slice(0, selectedIndex),
-        { ...selectedItem, isSelected: !selectedItem.isSelected },
-        ...this.state.buttons.slice(selectedIndex + 1)
-      ]
-    })
+  componentDidMount() {
+    store.subscribe(() => this.forceUpdate())
   }
 
   render() {
+    const state = store.getState()
     return (
       <Grid>
-        {this.state.buttons.map(button => (
+        {state.buttons.map(button => (
           <ToggleButton
             key={button.id}
             text={button.text}
             isSelected={button.isSelected}
-            toggle={e => this.toggle(button.id)}
+            toggle={e => store.dispatch(toggleButton(button.id))}
           />
         ))}
       </Grid>
