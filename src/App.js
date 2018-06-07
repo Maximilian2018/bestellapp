@@ -1,12 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Button } from 'reactstrap'
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
+import ToggleButton from './components/ToggleButton'
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -14,28 +7,40 @@ export default class Example extends React.Component {
 
     this.toggle = this.toggle.bind(this)
     this.state = {
-      dropdownOpen: false
+      buttons: [
+        { text: 'Gaspaccio', isSelected: false, id: 1 },
+        { text: 'Salat', isSelected: false, id: 2 }
+      ]
     }
   }
 
-  toggle() {
+  toggle(id) {
+    const selectedIndex = this.state.buttons.findIndex(
+      button => button.id === id
+    )
+
+    const selectedItem = this.state.buttons[selectedIndex]
+
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      buttons: [
+        ...this.state.buttons.slice(0, selectedIndex),
+        { ...selectedItem, isSelected: !selectedItem.isSelected },
+        ...this.state.buttons.slice(selectedIndex + 1)
+      ]
     })
   }
 
   render() {
     return (
-      <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>Menü</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Vorspeisen</DropdownItem>
-          <DropdownItem disabled>Hauptgänge</DropdownItem>
-          <DropdownItem>Bestseller</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Getränke</DropdownItem>
-        </DropdownMenu>
-      </ButtonDropdown>
+      <div>
+        {this.state.buttons.map(button => (
+          <ToggleButton
+            text={button.text}
+            isSelected={button.isSelected}
+            toggle={e => this.toggle(button.id)}
+          />
+        ))}
+      </div>
     )
   }
 }
