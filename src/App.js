@@ -1,6 +1,6 @@
 import React from 'react'
 import ToggleButton from './components/ToggleButton'
-
+import CollapseButton from './components/CollapseButton'
 export default class Example extends React.Component {
   constructor(props) {
     super(props)
