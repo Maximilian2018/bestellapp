@@ -1,6 +1,13 @@
 import React from 'react'
 import ToggleButton from './components/ToggleButton'
-import CollapseButton from './components/CollapseButton'
+//import CollapseButton from './components/CollapseButton'
+import styled from 'react-emotion'
+
+const Grid = styled('div')`
+  display: grid;
+  grid-gap: 10px;
+`
+
 export default class Example extends React.Component {
   constructor(props) {
     super(props)
@@ -38,15 +45,16 @@ export default class Example extends React.Component {
 
   render() {
     return (
-      <div>
+      <Grid>
         {this.state.buttons.map(button => (
           <ToggleButton
+            key={button.id}
             text={button.text}
             isSelected={button.isSelected}
             toggle={e => this.toggle(button.id)}
           />
         ))}
-      </div>
+      </Grid>
     )
   }
 }
