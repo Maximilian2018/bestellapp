@@ -3,9 +3,8 @@ import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import initialState from './reducers/initialState'
 import { toggleButton } from './actions'
-
 import ToggleButton from './components/ToggleButton'
-//import CollapseButton from './components/CollapseButton'
+import CollapseButton from './components/CollapseButton'
 import styled from 'react-emotion'
 
 const Grid = styled('div')`
@@ -15,7 +14,7 @@ const Grid = styled('div')`
 
 const store = createStore(reducer, initialState)
 
-export default class Example extends React.Component {
+export default class App extends React.Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
   }
@@ -24,6 +23,7 @@ export default class Example extends React.Component {
     const state = store.getState()
     return (
       <Grid>
+        <CollapseButton tableNumbers={state.tableNumbers} />
         {state.buttons.map(button => (
           <ToggleButton
             key={button.id}
