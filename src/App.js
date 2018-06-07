@@ -8,8 +8,14 @@ export default class Example extends React.Component {
     this.toggle = this.toggle.bind(this)
     this.state = {
       buttons: [
-        { text: 'Gaspaccio', isSelected: false, id: 1 },
-        { text: 'Salat', isSelected: false, id: 2 }
+        { text: 'Gazpacho', isSelected: false, id: 1 },
+        { text: 'Minestrone', isSelected: false, id: 2 },
+        { text: 'Vitello Tonnato', isSelected: false, id: 3 },
+        { text: 'ZwiebelTarte', isSelected: false, id: 4 },
+        { text: 'Salat Sommer', isSelected: false, id: 5 },
+        { text: 'Käseplatte', isSelected: false, id: 6 },
+        { text: 'Eier Benedikt', isSelected: false, id: 7 },
+        { text: 'Carpaccio', isSelected: false, id: 8 }
       ]
     }
   }

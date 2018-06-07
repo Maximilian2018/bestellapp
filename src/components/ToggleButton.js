@@ -6,7 +6,7 @@ const StyledButton = styled('div')`
   justify-content: center;
   align-items: center;
   height: 40px;
-  background: ${props => (props.isSelected ? 'cornflowerblue' : 'white')};
+  background: ${props => (props.isSelected ? 'cornflowerblue' : 'lightgrey')};
 `
 
 export default class ToggleButton extends Component {
