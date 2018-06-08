@@ -5,13 +5,15 @@ const StyledTableNumber = styled('div')`
   display: inline-block;
   height: 75px;
   width: 75px;
+  padding: 5px;
+  margin: 5px;
   background: grey;
   font-size: 1.6em;
-  text-color: black;
 `
 
 export default class TableNumber extends Component {
   selectTable(tableNo) {
+    this.props.toogle()
     console.log(tableNo)
   }
   render() {

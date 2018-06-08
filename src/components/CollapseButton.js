@@ -13,6 +13,12 @@ const StyledButton = styled('div')`
   background: orange;
 `
 
+const TableNumberBox = styled('div')`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`
+
 export default class CollapseButton extends Component {
   state = {
     collapse: false
@@ -33,9 +39,15 @@ export default class CollapseButton extends Component {
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBody>
-              {this.props.tableNumbers.map(tableNumber => (
-                <TableNumber tableNumber={tableNumber} key={tableNumber} />
-              ))}
+              <TableNumberBox>
+                {this.props.tableNumbers.map(tableNumber => (
+                  <TableNumber
+                    tableNumber={tableNumber}
+                    key={tableNumber}
+                    toogle={this.toggle}
+                  />
+                ))}
+              </TableNumberBox>
             </CardBody>
           </Card>
         </Collapse>
