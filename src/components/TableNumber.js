@@ -14,7 +14,7 @@ const StyledTableNumber = styled('div')`
 export default class TableNumber extends Component {
   selectTable(tableNo) {
     this.props.toogle()
-    console.log(tableNo)
+    this.props.getTableNumber(tableNo)
   }
   render() {
     return (

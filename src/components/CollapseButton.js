@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { Collapse, Button, CardBody, Card } from 'reactstrap'
 import TableNumber from './TableNumber'
 import styled from 'react-emotion'
+import { css } from 'emotion'
+
+const StyledHeader = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const StyledButton = styled('div')`
   display: flex;
@@ -19,6 +26,14 @@ const TableNumberBox = styled('div')`
   flex-wrap: wrap;
 `
 
+const ShowTableNumber = styled('div')`
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #333;
+  color: white;
+  font-size: 1.6em;
+`
+
 export default class CollapseButton extends Component {
   state = {
     collapse: false
@@ -30,12 +45,20 @@ export default class CollapseButton extends Component {
     })
   }
 
+  getTableNumber(selectedTable) {
+    const placeholder = document.querySelector('.showTableNumber')
+    placeholder.innerHTML = selectedTable
+  }
+
   render() {
     return (
       <div>
-        <StyledButton onClick={this.toggle} style={{ marginBottom: '1rem' }}>
-          <h1>Tischnummer</h1>
-        </StyledButton>
+        <StyledHeader>
+          <StyledButton onClick={this.toggle} style={{ marginBottom: '1rem' }}>
+            <h1>Tischnummer</h1>
+          </StyledButton>
+          <ShowTableNumber className="showTableNumber" />
+        </StyledHeader>
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBody>
@@ -45,6 +68,7 @@ export default class CollapseButton extends Component {
                     tableNumber={tableNumber}
                     key={tableNumber}
                     toogle={this.toggle}
+                    getTableNumber={this.getTableNumber}
                   />
                 ))}
               </TableNumberBox>
