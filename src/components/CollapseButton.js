@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Collapse, Button, CardBody, Card } from 'reactstrap'
+import TableNumber from './TableNumber'
 import styled from 'react-emotion'
 
 const StyledButton = styled('div')`
@@ -7,13 +8,9 @@ const StyledButton = styled('div')`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 40px;
+  height: 60px;
   color: white;
-  background: cornflowerblue;
-`
-
-const TableNumber = styled('div')`
-  font-size: 1.3em;
+  background: orange;
 `
 
 export default class CollapseButton extends Component {
@@ -31,13 +28,13 @@ export default class CollapseButton extends Component {
     return (
       <div>
         <StyledButton onClick={this.toggle} style={{ marginBottom: '1rem' }}>
-          Tischnummer
+          <h1>Tischnummer</h1>
         </StyledButton>
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBody>
               {this.props.tableNumbers.map(tableNumber => (
-                <TableNumber>{tableNumber}</TableNumber>
+                <TableNumber tableNumber={tableNumber} key={tableNumber} />
               ))}
             </CardBody>
           </Card>

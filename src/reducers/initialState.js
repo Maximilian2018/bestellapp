@@ -1,7 +1,29 @@
 import uid from 'uid'
 
 export default {
-  tableNumbers: [1, 2, 3, 4, 5, 21, 22, 23, 24, 30, 31],
+  tableNumbers: [
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50,
+    61,
+    62,
+    63,
+    64,
+    65,
+    100,
+    200,
+    300,
+    400,
+    500
+  ],
+
   buttons: [
     { text: 'Gazpacho', isSelected: false, id: uid() },
     { text: 'Minestrone', isSelected: false, id: uid() },
