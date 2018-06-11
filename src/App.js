@@ -8,6 +8,8 @@ import DishPage from './components/DishPage'
 import CollapseButton from './components/CollapseButton'
 import styled from 'react-emotion'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import drinks from './components/drinksList'
+import bestSeller from './components/bestSeller'
 
 const Grid = styled('div')`
   display: grid;
@@ -33,12 +35,28 @@ export default class App extends React.Component {
               <div>
                 <CollapseButton tableNumbers={state.tableNumbers} />{' '}
                 <div>
+                  <Link to="/bestSeller">Meist bestellt</Link>
+                </div>
+                <div>
                   <Link to="/starters">Vorspeisen</Link>
                 </div>
                 <div>
                   <Link to="/main-courses">Hauptspeisen</Link>
                 </div>
+                <div>
+                  <Link to="/drinks">Getränke</Link>
+                </div>
               </div>
+            )}
+          />
+          <Route
+            path="/bestSeller"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'bestSeller'))}
+                title="Meist bestellt"
+                buttons={state.bestSeller}
+              />
             )}
           />
 
@@ -60,6 +78,17 @@ export default class App extends React.Component {
                 onToggle={id => store.dispatch(toggleButton(id, 'mainCourses'))}
                 title="Hauptspeisen"
                 buttons={state.mainCourses}
+              />
+            )}
+          />
+
+          <Route
+            path="/drinks"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'drinks'))}
+                title="drinks"
+                buttons={state.drinks}
               />
             )}
           />
