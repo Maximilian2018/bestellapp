@@ -4,8 +4,10 @@ import reducer from './reducers/reducer'
 import initialState from './reducers/initialState'
 import { toggleButton } from './actions'
 import ToggleButton from './components/ToggleButton'
+import DishPage from './components/DishPage'
 import CollapseButton from './components/CollapseButton'
 import styled from 'react-emotion'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const Grid = styled('div')`
   display: grid;
@@ -22,17 +24,47 @@ export default class App extends React.Component {
   render() {
     const state = store.getState()
     return (
-      <Grid>
-        <CollapseButton tableNumbers={state.tableNumbers} />
-        {state.buttons.map(button => (
-          <ToggleButton
-            key={button.id}
-            text={button.text}
-            isSelected={button.isSelected}
-            toggle={e => store.dispatch(toggleButton(button.id))}
+      <Router>
+        <Grid>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <div>
+                <CollapseButton tableNumbers={state.tableNumbers} />{' '}
+                <div>
+                  <Link to="/starters">Vorspeisen</Link>
+                </div>
+                <div>
+                  <Link to="/main-courses">Hauptspeisen</Link>
+                </div>
+              </div>
+            )}
           />
-        ))}
-      </Grid>
+
+          <Route
+            path="/starters"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'starters'))}
+                title="Vorspeisen"
+                buttons={state.starters}
+              />
+            )}
+          />
+
+          <Route
+            path="/main-courses"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'mainCourses'))}
+                title="Hauptspeisen"
+                buttons={state.mainCourses}
+              />
+            )}
+          />
+        </Grid>
+      </Router>
     )
   }
 }

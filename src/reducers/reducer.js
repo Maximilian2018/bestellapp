@@ -1,17 +1,18 @@
 const reducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_BUTTON':
-      const selectedIndex = state.buttons.findIndex(
-        button => button.id === action.payload
+      const category = action.payload.category
+      const selectedIndex = state[category].findIndex(
+        button => button.id === action.payload.id
       )
-      const selectedItem = state.buttons[selectedIndex]
+      const selectedItem = state[category][selectedIndex]
 
       return {
         ...state,
-        buttons: [
-          ...state.buttons.slice(0, selectedIndex),
+        [category]: [
+          ...state[category].slice(0, selectedIndex),
           { ...selectedItem, isSelected: !selectedItem.isSelected },
-          ...state.buttons.slice(selectedIndex + 1)
+          ...state[category].slice(selectedIndex + 1)
         ]
       }
 

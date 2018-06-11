@@ -1,6 +1,6 @@
-export function toggleButton(id) {
+export function toggleButton(id, category) {
   return {
     type: 'TOGGLE_BUTTON',
-    payload: id
+    payload: { id, category }
   }
 }
