@@ -10,6 +10,9 @@ import styled from 'react-emotion'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import drinks from './components/drinksList'
 import bestSeller from './components/bestSeller'
+import Dessert from './components/Dessert'
+//import CounterButton from './CounterButton'
+import PropTypes from 'prop-types'
 
 const Grid = styled('div')`
   display: grid;
@@ -45,6 +48,9 @@ export default class App extends React.Component {
                 </div>
                 <div>
                   <Link to="/drinks">Getränke</Link>
+                </div>
+                <div>
+                  <Link to="/Dessert">Nachtisch</Link>
                 </div>
               </div>
             )}
@@ -89,6 +95,16 @@ export default class App extends React.Component {
                 onToggle={id => store.dispatch(toggleButton(id, 'drinks'))}
                 title="drinks"
                 buttons={state.drinks}
+              />
+            )}
+          />
+          <Route
+            path="/Dessert"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'Dessert'))}
+                title="Nachtisch"
+                buttons={state.Dessert}
               />
             )}
           />

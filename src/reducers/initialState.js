@@ -61,16 +61,16 @@ export default {
     { text: 'Salad Scallops ', isSelected: false, id: uid() }
   ],
 
-  drinks: [
-    { text: 'Pitcher Heineken ', isSelected: false, id: uid() },
-    { text: 'Pitcher Becks ', isSelected: false, id: uid() },
-    { text: 'Pitcher Salitos', isSelected: false, id: uid() },
-    { text: 'Pitcher Astra ', isSelected: false, id: uid() },
-    { text: 'White Wine', isSelected: false, id: uid() },
-    { text: 'Red Wine ', isSelected: false, id: uid() },
-    { text: 'Sparkling Wine ', isSelected: false, id: uid() },
-    { text: 'Champagner', isSelected: false, id: uid() },
-    { text: 'Shoots', isSelected: false, id: uid() },
-    { text: 'Cocktails', isSelected: false, id: uid() }
+  Dessert: [
+    { text: 'Margarita Cupcakes ', isSelected: false, id: uid() },
+    { text: 'Banana Pudding ', isSelected: false, id: uid() },
+    { text: 'Peanut Butter Cookie', isSelected: false, id: uid() },
+    { text: 'Pumpkin Pie Brownie ', isSelected: false, id: uid() },
+    { text: 'Cookie Dough Cheesecake', isSelected: false, id: uid() },
+    { text: 'Red Velvet Cake ', isSelected: false, id: uid() },
+    { text: 'Triple Chocolate Mousse', isSelected: false, id: uid() },
+    { text: 'Caramel Apple Cake', isSelected: false, id: uid() },
+    { text: 'Lemon Blueberry Cake', isSelected: false, id: uid() },
+    { text: 'Giant Oreo Cake', isSelected: false, id: uid() }
   ]
 }

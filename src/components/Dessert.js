@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
-import styled from 'react-emotion'
 
-export default class DishPage extends Component {
+export default class Dessert extends Component {
   render() {
     return (
       <div>
