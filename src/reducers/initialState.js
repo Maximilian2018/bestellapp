@@ -61,7 +61,20 @@ export default {
     { text: 'Salad Scallops ', isSelected: false, id: uid() }
   ],
 
-  Dessert: [
+  drinks: [
+    { text: 'Pitcher Heineken ', isSelected: false, id: uid() },
+    { text: 'Pitcher Becks ', isSelected: false, id: uid() },
+    { text: 'Pitcher Salitos', isSelected: false, id: uid() },
+    { text: 'Pitcher Astra', isSelected: false, id: uid() },
+    { text: 'White Wine', isSelected: false, id: uid() },
+    { text: 'Red Wine ', isSelected: false, id: uid() },
+    { text: 'Sparkling Wine', isSelected: false, id: uid() },
+    { text: 'Champagner', isSelected: false, id: uid() },
+    { text: 'Shoots', isSelected: false, id: uid() },
+    { text: 'Coktails', isSelected: false, id: uid() }
+  ],
+
+  dessert: [
     { text: 'Margarita Cupcakes ', isSelected: false, id: uid() },
     { text: 'Banana Pudding ', isSelected: false, id: uid() },
     { text: 'Peanut Butter Cookie', isSelected: false, id: uid() },
