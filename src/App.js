@@ -1,61 +1,116 @@
 import React from 'react'
+import { createStore } from 'redux'
+import reducer from './reducers/reducer'
+import initialState from './reducers/initialState'
+import { toggleButton } from './actions'
 import ToggleButton from './components/ToggleButton'
-//import CollapseButton from './components/CollapseButton'
-import uid from 'uid'
+import DishPage from './components/DishPage'
+import CollapseButton from './components/CollapseButton'
 import styled from 'react-emotion'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import drinks from './components/drinksList'
+import bestSeller from './components/bestSeller'
+import Dessert from './components/Dessert'
+import './index.css'
+//import CounterButton from './CounterButton'
+//import PropTypes from 'prop-types'
 
 const Grid = styled('div')`
   display: grid;
   grid-gap: 10px;
 `
 
-export default class Example extends React.Component {
-  constructor(props) {
-    super(props)
+const store = createStore(reducer, initialState)
 
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      buttons: [
-        { text: 'Gazpacho', isSelected: false, id: uid() },
-        { text: 'Minestrone', isSelected: false, id: uid() },
-        { text: 'Vitello Tonnato', isSelected: false, id: uid() },
-        { text: 'ZwiebelTarte', isSelected: false, id: uid() },
-        { text: 'Salat Sommer', isSelected: false, id: uid() },
-        { text: 'Käseplatte', isSelected: false, id: uid() },
-        { text: 'Eier Benedikt', isSelected: false, id: uid() },
-        { text: 'Carpaccio', isSelected: false, id: uid() }
-      ]
-    }
-  }
-
-  toggle(id) {
-    const selectedIndex = this.state.buttons.findIndex(
-      button => button.id === id
-    )
-
-    const selectedItem = this.state.buttons[selectedIndex]
-
-    this.setState({
-      buttons: [
-        ...this.state.buttons.slice(0, selectedIndex),
-        { ...selectedItem, isSelected: !selectedItem.isSelected },
-        ...this.state.buttons.slice(selectedIndex + 1)
-      ]
-    })
+export default class App extends React.Component {
+  componentDidMount() {
+    store.subscribe(() => this.forceUpdate())
   }
 
   render() {
+    const state = store.getState()
     return (
-      <Grid>
-        {this.state.buttons.map(button => (
-          <ToggleButton
-            key={button.id}
-            text={button.text}
-            isSelected={button.isSelected}
-            toggle={e => this.toggle(button.id)}
+      <Router>
+        <Grid>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <div>
+                <CollapseButton tableNumbers={state.tableNumbers} />{' '}
+                <div>
+                  <Link to="/bestSeller">Meist bestellt</Link>
+                </div>
+                <div>
+                  <Link to="/starters">Vorspeisen</Link>
+                </div>
+                <div>
+                  <Link to="/main-courses">Hauptspeisen</Link>
+                </div>
+                <div>
+                  <Link to="/drinks">Getränke</Link>
+                </div>
+                <div>
+                  <Link to="/Dessert">Nachtisch</Link>
+                </div>
+              </div>
+            )}
           />
-        ))}
-      </Grid>
+          <Route
+            path="/bestSeller"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'bestSeller'))}
+                title="Meist bestellt"
+                buttons={state.bestSeller}
+              />
+            )}
+          />
+
+          <Route
+            path="/starters"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'starters'))}
+                title="Vorspeisen"
+                buttons={state.starters}
+              />
+            )}
+          />
+
+          <Route
+            path="/main-courses"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'mainCourses'))}
+                title="Hauptspeisen"
+                buttons={state.mainCourses}
+              />
+            )}
+          />
+
+          <Route
+            path="/drinks"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'drinks'))}
+                title="drinks"
+                buttons={state.drinks}
+              />
+            )}
+          />
+          <Route
+            path="/Dessert"
+            render={() => (
+              <DishPage
+                onToggle={id => store.dispatch(toggleButton(id, 'Dessert'))}
+                title="Nachtisch"
+                buttons={state.dessert}
+              />
+            )}
+          />
+        </Grid>
+      </Router>
     )
   }
 }
