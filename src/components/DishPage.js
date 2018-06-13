@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ToggleButton from './ToggleButton'
+import CounterButton from './CounterButton'
 import { Link } from 'react-router-dom'
 import styled from 'react-emotion'
 
@@ -10,11 +10,12 @@ export default class DishPage extends Component {
         <Link to="/">Zurück</Link>
         <h3>{this.props.title}</h3>
         {this.props.buttons.map(button => (
-          <ToggleButton
+          <CounterButton
             key={button.id}
             text={button.text}
-            isSelected={button.isSelected}
-            toggle={e => this.props.onToggle(button.id)}
+            onIncrease={e => this.props.onIncrease(button.id)}
+            onDecrease={e => this.props.onDecrease(button.id)}
+            count={button.count}
           />
         ))}
       </div>

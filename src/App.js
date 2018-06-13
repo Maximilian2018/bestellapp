@@ -2,7 +2,7 @@ import React from 'react'
 import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import initialState from './reducers/initialState'
-import { toggleButton } from './actions'
+import { toggleButton, increaseButton, decreaseButton } from './actions'
 import ToggleButton from './components/ToggleButton'
 import DishPage from './components/DishPage'
 import CollapseButton from './components/CollapseButton'
@@ -11,9 +11,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import drinks from './components/drinksList'
 import bestSeller from './components/bestSeller'
 import Dessert from './components/Dessert'
-import './index.css'
-//import CounterButton from './CounterButton'
-//import PropTypes from 'prop-types'
+import BestellButton from './components/BestellButton'
+import CounterButton from './components/CounterButton'
+import PropTypes from 'prop-types'
 
 const Grid = styled('div')`
   display: grid;
@@ -51,7 +51,10 @@ export default class App extends React.Component {
                   <Link to="/drinks">Getränke</Link>
                 </div>
                 <div>
-                  <Link to="/Dessert">Nachtisch</Link>
+                  <Link to="/dessert">Nachtisch</Link>
+                </div>
+                <div>
+                  <Link to="/BestellButton">Bestellung abschicken</Link>
                 </div>
               </div>
             )}
@@ -60,7 +63,12 @@ export default class App extends React.Component {
             path="/bestSeller"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'bestSeller'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'bestSeller'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'bestSeller'))
+                }
                 title="Meist bestellt"
                 buttons={state.bestSeller}
               />
@@ -71,7 +79,12 @@ export default class App extends React.Component {
             path="/starters"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'starters'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'starters'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'starters'))
+                }
                 title="Vorspeisen"
                 buttons={state.starters}
               />
@@ -82,7 +95,12 @@ export default class App extends React.Component {
             path="/main-courses"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'mainCourses'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'mainCourses'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'mainCourses'))
+                }
                 title="Hauptspeisen"
                 buttons={state.mainCourses}
               />
@@ -93,19 +111,34 @@ export default class App extends React.Component {
             path="/drinks"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'drinks'))}
+                onIncrease={id => store.dispatch(increaseButton(id, 'drinks'))}
+                onDecrease={id => store.dispatch(decreaseButton(id, 'drinks'))}
                 title="drinks"
                 buttons={state.drinks}
               />
             )}
           />
           <Route
-            path="/Dessert"
+            path="/dessert"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'Dessert'))}
+                onIncrease={id => store.dispatch(increaseButton(id, 'dessert'))}
+                onDecrease={id => store.dispatch(decreaseButton(id, 'dessert'))}
                 title="Nachtisch"
                 buttons={state.dessert}
+              />
+            )}
+          />
+
+          <Route
+            path="/BestellButton"
+            render={() => (
+              <DishPage
+                onToggle={id =>
+                  store.dispatch(toggleButton(id, 'BestellButton'))
+                }
+                title="Bestellung abschicken"
+                buttons={state.BestellButton}
               />
             )}
           />
