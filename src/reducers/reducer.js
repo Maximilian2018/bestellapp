@@ -35,6 +35,9 @@ const reducer = (state, action) => {
         ]
       }
 
+    case 'SELECT_TABLE':
+      return { ...state, selectedTable: action.payload }
+
     case 'DECREASE_BUTTON':
       category = action.payload.category
       selectedIndex = state[category].findIndex(

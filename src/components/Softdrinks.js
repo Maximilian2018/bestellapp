@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
 
-export default class drinksList extends Component {
+export default class Softdrinks extends Component {
   render() {
     return (
       <div>

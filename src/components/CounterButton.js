@@ -7,10 +7,11 @@ const StyledButton = styled('section')`
   align-items: center;
   justify-content: space-between;
   height: 40px;
-  background: ${props => (props.active ? 'skyblue' : '#eee')};
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background: ${props => (props.active ? 'orange' : '#eee')};
+  border: 3px solid #ccc;
+  border-radius: 10px;
   overflow: hidden;
+  margin: 10px;
 `
 
 const SideButton = styled('button')`

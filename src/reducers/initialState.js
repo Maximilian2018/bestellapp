@@ -2,6 +2,8 @@ import uid from 'uid'
 import BestellButton from '../components/BestellButton'
 
 export default {
+  selectedTable: 1,
+  tables: {},
   tableNumbers: [
     1,
     2,
@@ -13,6 +15,7 @@ export default {
     8,
 
     10,
+
     20,
     30,
     40,
@@ -29,13 +32,13 @@ export default {
   ],
 
   bestSeller: [
-    { text: 'Monday', count: 0, id: uid() },
-    { text: 'Tuesday', count: 0, id: uid() },
-    { text: 'Wednesday', count: 0, id: uid() },
-    { text: 'Thursday', count: 0, id: uid() },
-    { text: 'Friday', count: 0, id: uid() },
-    { text: 'Saturday', count: 0, id: uid() },
-    { text: 'Sunday', count: 0, id: uid() }
+    { text: 'Gazpacho', count: 0, id: uid() },
+    { text: 'Sommer Salad', count: 0, id: uid() },
+    { text: 'Beef Kobe Steak', count: 0, id: uid() },
+    { text: 'Champagner', count: 0, id: uid() },
+    { text: 'Pitcher Salitos', count: 0, id: uid() },
+    { text: 'Grilled Snapper Asia-Style', count: 0, id: uid() },
+    { text: 'Corn Chicken', count: 0, id: uid() }
   ],
 
   starters: [
@@ -62,19 +65,6 @@ export default {
     { text: 'Salad Scallops ', count: 0, id: uid() }
   ],
 
-  drinks: [
-    { text: 'Pitcher Heineken ', count: 0, id: uid() },
-    { text: 'Pitcher Becks ', count: 0, id: uid() },
-    { text: 'Pitcher Salitos', count: 0, id: uid() },
-    { text: 'Pitcher Astra', count: 0, id: uid() },
-    { text: 'White Wine', count: 0, id: uid() },
-    { text: 'Red Wine ', count: 0, id: uid() },
-    { text: 'Sparkling Wine', count: 0, id: uid() },
-    { text: 'Champagner', count: 0, id: uid() },
-    { text: 'Shoots', count: 0, id: uid() },
-    { text: 'Coktails', count: 0, id: uid() }
-  ],
-
   dessert: [
     { text: 'Margarita Cupcakes ', count: 0, id: uid() },
     { text: 'Banana Pudding ', count: 0, id: uid() },
@@ -87,6 +77,35 @@ export default {
     { text: 'Lemon Blueberry Cake', count: 0, id: uid() },
     { text: 'Giant Oreo Cake', count: 0, id: uid() }
   ],
+  alcohol: [
+    { text: 'Pitcher Heineken ', count: 0, id: uid() },
+    { text: 'Pitcher Becks ', count: 0, id: uid() },
+    { text: 'Pitcher Salitos', count: 0, id: uid() },
+    { text: 'Pitcher Astra', count: 0, id: uid() },
+    { text: 'White Wine', count: 0, id: uid() },
+    { text: 'Red Wine ', count: 0, id: uid() },
+    { text: 'Sparkling Wine', count: 0, id: uid() },
+    { text: 'Champagner', count: 0, id: uid() },
+    { text: 'Shoots', count: 0, id: uid() },
+    { text: 'Coktails', count: 0, id: uid() }
+  ],
 
-  BestellButton: []
+  softdrinks: [
+    { text: 'Flasche Wasser 0.75l mit ', count: 0, id: uid() },
+    { text: 'Flasche Wasser 0.75l ohne ', count: 0, id: uid() },
+    { text: 'Apfelschorle 0.3l', count: 0, id: uid() },
+    { text: 'Apfelschorle 0.5l', count: 0, id: uid() },
+    { text: 'Cola 0.3l', count: 0, id: uid() },
+    { text: 'Cola 0.5l', count: 0, id: uid() },
+    { text: 'Fanta 0.3l', count: 0, id: uid() },
+    { text: 'Fanta 0.5l', count: 0, id: uid() },
+    { text: 'Sprite 0.3l', count: 0, id: uid() },
+    { text: 'Sprite 0.5l', count: 0, id: uid() },
+    { text: 'Capuchino', count: 0, id: uid() },
+    { text: 'Latte Macciato', count: 0, id: uid() },
+    { text: 'Espresso', count: 0, id: uid() },
+    { text: 'Espresso double', count: 0, id: uid() },
+    { text: 'Home Coffee', count: 0, id: uid() },
+    { text: 'Hot Milk with Honey', count: 0, id: uid() }
+  ]
 }

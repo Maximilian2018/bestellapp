@@ -12,15 +12,13 @@ const StyledTableNumber = styled('div')`
 `
 
 export default class TableNumber extends Component {
-  selectTable(tableNo) {
+  selectTable = () => {
     this.props.toogle()
-    this.props.getTableNumber(tableNo)
+    this.props.selectTable(this.props.tableNumber)
   }
   render() {
     return (
-      <StyledTableNumber
-        onClick={this.selectTable.bind(this, this.props.tableNumber)}
-      >
+      <StyledTableNumber onClick={this.selectTable}>
         {this.props.tableNumber}
       </StyledTableNumber>
     )

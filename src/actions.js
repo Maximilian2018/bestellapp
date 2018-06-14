@@ -18,3 +18,10 @@ export function decreaseButton(id, category) {
     payload: { id, category }
   }
 }
+
+export function selectTable(num) {
+  return {
+    type: 'SELECT_TABLE',
+    payload: num
+  }
+}
