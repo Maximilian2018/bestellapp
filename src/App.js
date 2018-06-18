@@ -20,6 +20,7 @@ import BestellButton from './components/BestellButton'
 import CounterButton from './components/CounterButton'
 import PropTypes from 'prop-types'
 import Softdrinks from './components/Softdrinks'
+import ExtraWuensche from './components/ExtraWuensche'
 
 const Grid = styled('div')`
   display: grid;
@@ -36,7 +37,9 @@ export default class App extends React.Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
   }
-
+  inputBestellButton = event => {
+    this.setState({ userInput: event.target.value })
+  }
   render() {
     const state = store.getState()
     return (
@@ -74,6 +77,9 @@ export default class App extends React.Component {
                   <Link style={{ background: 'green' }} to="/bestellen">
                     Bestellung abschicken
                   </Link>
+                </div>
+                <div>
+                  <Link to="/extrawuensche">ExtraWünsche</Link>
                 </div>
               </div>
             )}
@@ -169,7 +175,21 @@ export default class App extends React.Component {
             path="/bestellen"
             render={() => (
               <div>
-                <BestellButton title={'Bestellung abschicken'} />
+                <BestellButton
+                  input={this.inputBestellButton}
+                  title={'Bestellung abschicken'}
+                />
+              </div>
+            )}
+          />
+          <Route
+            path="/extrawuensche"
+            render={() => (
+              <div>
+                <ExtraWuensche
+                  title={'extrawuensche'}
+                  buttons={state.extrawuensche}
+                />
               </div>
             )}
           />

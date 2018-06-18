@@ -4,6 +4,7 @@ import BestellButton from '../components/BestellButton'
 export default {
   selectedTable: 1,
   tables: {},
+  userInput: '',
   tableNumbers: [
     1,
     2,
@@ -83,11 +84,13 @@ export default {
     { text: 'Pitcher Salitos', count: 0, id: uid() },
     { text: 'Pitcher Astra', count: 0, id: uid() },
     { text: 'White Wine', count: 0, id: uid() },
-    { text: 'Red Wine ', count: 0, id: uid() },
-    { text: 'Sparkling Wine', count: 0, id: uid() },
-    { text: 'Champagner', count: 0, id: uid() },
+    { text: 'Red Wine 0,75l', count: 0, id: uid() },
+    { text: 'Sparkling Wine 0,75l', count: 0, id: uid() },
+    { text: 'Sparkling Wine 0,2l', count: 0, id: uid() },
+    { text: 'Champagner 0,75l', count: 0, id: uid() },
+    { text: 'Champagner 0,2l', count: 0, id: uid() },
     { text: 'Shoots', count: 0, id: uid() },
-    { text: 'Coktails', count: 0, id: uid() }
+    { text: 'Coktail of the day', count: 0, id: uid() }
   ],
 
   softdrinks: [
@@ -107,5 +110,21 @@ export default {
     { text: 'Espresso double', count: 0, id: uid() },
     { text: 'Home Coffee', count: 0, id: uid() },
     { text: 'Hot Milk with Honey', count: 0, id: uid() }
+  ],
+
+  extrawuensche: [
+    { text: 'extra Parmesan ', count: 0, id: uid() },
+    { text: 'extra Chicken', count: 0, id: uid() },
+    { text: 'extra Beef', count: 0, id: uid() },
+    { text: 'extra Fisch', count: 0, id: uid() },
+    { text: 'mit Zitrone', count: 0, id: uid() },
+    { text: 'ohne Koriander', count: 0, id: uid() },
+    { text: 'ohne Gluten ', count: 0, id: uid() },
+    { text: 'ohne Koffein', count: 0, id: uid() },
+    { text: 'ohne Dressing', count: 0, id: uid() },
+    { text: 'ohne Eiswürfel ', count: 0, id: uid() },
+    { text: 'extra Eiswürfel', count: 0, id: uid() },
+    { text: 'extra Sahne', count: 0, id: uid() },
+    { text: 'ohne Sahne', count: 0, id: uid() }
   ]
 }

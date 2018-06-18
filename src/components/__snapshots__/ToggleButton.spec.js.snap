@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleButton changes the color 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 40px;
+  background: yellow;
+}
+
+<ToggleButton
+  isSelected={false}
+  text="foo"
+  toggle={[Function]}
+>
+  <Styled(div)
+    isSelected={false}
+    onClick={[Function]}
+  >
+    <div
+      className="emotion-0"
+      onClick={[Function]}
+    >
+      foo
+    </div>
+  </Styled(div)>
+</ToggleButton>
+`;
+
+exports[`ToggleButton changes the color 2`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 40px;
+  background: cornflowerblue;
+}
+
+<ToggleButton
+  isSelected={true}
+  text="foo"
+  toggle={[Function]}
+>
+  <Styled(div)
+    isSelected={true}
+    onClick={[Function]}
+  >
+    <div
+      className="emotion-0"
+      onClick={[Function]}
+    >
+      foo
+    </div>
+  </Styled(div)>
+</ToggleButton>
+`;
