@@ -79,7 +79,7 @@ export default class App extends React.Component {
                   </Link>
                 </div>
                 <div>
-                  <Link to="/extrawuensche">ExtraWünsche</Link>
+                  <Link to="/extrawuensche">Extrawünsche</Link>
                 </div>
               </div>
             )}
@@ -99,7 +99,6 @@ export default class App extends React.Component {
               />
             )}
           />
-
           <Route
             path="/starters"
             render={() => (
@@ -115,7 +114,6 @@ export default class App extends React.Component {
               />
             )}
           />
-
           <Route
             path="/main-courses"
             render={() => (
@@ -131,7 +129,6 @@ export default class App extends React.Component {
               />
             )}
           />
-
           <Route
             path="/dessert"
             render={() => (
@@ -158,7 +155,6 @@ export default class App extends React.Component {
               />
             )}
           />
-
           <Route
             path="/alcohol"
             render={() => (
@@ -170,28 +166,32 @@ export default class App extends React.Component {
               />
             )}
           />
-
+          <Route
+            path="/Extrawuensche"
+            render={() => (
+              <DishPage
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'extrawuensche'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'extrawuensche'))
+                }
+                title="Extrawünsche"
+                buttons={state.extrawuensche}
+              />
+            )}
+          />
           <Route
             path="/bestellen"
             render={() => (
               <div>
                 <BestellButton
-                  input={this.inputBestellButton}
+                  name="textarea"
                   title={'Bestellung abschicken'}
                 />
               </div>
             )}
           />
-          <Route
-            path="/extrawuensche"
-            render={() => (
-              <div>
-                <ExtraWuensche
-                  title={'extrawuensche'}
-                  buttons={state.extrawuensche}
-                />
-              </div>
-            )}
           />
         </Grid>
       </Router>

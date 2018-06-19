@@ -30,16 +30,26 @@ const CountValue = styled('span')`
   font-size: 1.1em;
 `
 
+const TextStyle = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+`
+
 export default class CounterButton extends Component {
   render() {
-    const { onDecrease, onIncrease, text, count } = this.props
+    const { onDecrease, onIncrease, text, count, price } = this.props
 
     return (
       <StyledButton active={count > 0}>
         <SideButton onClick={onDecrease}>-</SideButton>
-        <span>
-          {text} <CountValue>{count > 0 && `(${count})`}</CountValue>
-        </span>
+        <TextStyle>
+          <span>
+            {text} <CountValue>{count > 0 && `(${count})`}</CountValue>
+          </span>
+          <span>{price && price.toFixed(2)} €</span>
+        </TextStyle>
         <SideButton onClick={onIncrease}>+</SideButton>
       </StyledButton>
     )

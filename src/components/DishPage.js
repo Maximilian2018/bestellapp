@@ -13,6 +13,7 @@ export default class DishPage extends Component {
           <CounterButton
             key={button.id}
             text={button.text}
+            price={button.price}
             onIncrease={e => this.props.onIncrease(button.id)}
             onDecrease={e => this.props.onDecrease(button.id)}
             count={button.count}

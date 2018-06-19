@@ -12,6 +12,7 @@ export default class Softdrinks extends Component {
           <ToggleButton
             key={button.id}
             text={button.text}
+            price={button.price}
             isSelected={button.isSelected}
             toggle={e => this.props.onToggle(button.id)}
           />
