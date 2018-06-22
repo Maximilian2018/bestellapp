@@ -17,7 +17,7 @@ const StyledButton = styled('section')`
 const SideButton = styled('button')`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 40px;
   height: 100%;
   border: none;
@@ -28,6 +28,8 @@ const SideButton = styled('button')`
 const CountValue = styled('span')`
   font-weight: bold;
   font-size: 1.1em;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const TextStyle = styled('div')`
@@ -35,6 +37,7 @@ const TextStyle = styled('div')`
   justify-content: space-between;
   width: 100%;
   padding: 0 20px;
+  align-items: center;
 `
 
 export default class CounterButton extends Component {

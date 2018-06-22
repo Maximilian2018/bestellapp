@@ -16,7 +16,7 @@ export default class DishPage extends Component {
             price={button.price}
             onIncrease={e => this.props.onIncrease(button.id)}
             onDecrease={e => this.props.onDecrease(button.id)}
-            count={button.count}
+            count={(this.props.table && this.props.table[button.id]) || 0}
           />
         ))}
       </div>

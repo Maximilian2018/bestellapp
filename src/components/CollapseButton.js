@@ -16,24 +16,27 @@ const StyledButton = styled('div')`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: center;
+  height: 100%;
   color: white;
-  background: orange;
+  background: grey;
 `
 
 const TableNumberBox = styled('div')`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 `
 
 const ShowTableNumber = styled('div')`
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #333;
+  background-color: blue;
+  width: center;
+  height: center;
+  display: grid;
   color: white;
   font-size: 1.6em;
-  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 `
 
 export default class CollapseButton extends Component {
@@ -58,6 +61,7 @@ export default class CollapseButton extends Component {
           <StyledButton onClick={this.toggle} style={{ marginBottom: '1rem' }}>
             <h1>Tischnummer</h1>
           </StyledButton>
+
           <ShowTableNumber>{this.props.selectedTable}</ShowTableNumber>
         </StyledHeader>
         <Collapse isOpen={this.state.collapse}>

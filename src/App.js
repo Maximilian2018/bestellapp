@@ -68,7 +68,7 @@ export default class App extends React.Component {
                   <Link to="/dessert">Nachtisch</Link>
                 </div>
                 <div>
-                  <Link to="/softdrinks">softdrinks</Link>
+                  <Link to="/softdrinks">Softdrinks</Link>
                 </div>
                 <div>
                   <Link to="/alcohol">Alkohol</Link>
@@ -79,7 +79,12 @@ export default class App extends React.Component {
                   </Link>
                 </div>
                 <div>
-                  <Link to="/extrawuensche">Extrawünsche</Link>
+                  <Link
+                    style={{ background: 'cornflowerblue' }}
+                    to="/extrawuensche"
+                  >
+                    Extrawünsche
+                  </Link>
                 </div>
               </div>
             )}
@@ -95,7 +100,10 @@ export default class App extends React.Component {
                   store.dispatch(decreaseButton(id, 'bestSeller'))
                 }
                 title="Meist bestellt"
-                buttons={state.bestSeller}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'bestSeller'
+                )}
               />
             )}
           />
@@ -110,7 +118,10 @@ export default class App extends React.Component {
                   store.dispatch(decreaseButton(id, 'starters'))
                 }
                 title="Vorspeisen"
-                buttons={state.starters}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'starters'
+                )}
               />
             )}
           />
@@ -125,7 +136,10 @@ export default class App extends React.Component {
                   store.dispatch(decreaseButton(id, 'mainCourses'))
                 }
                 title="Hauptspeisen"
-                buttons={state.mainCourses}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'mainCourses'
+                )}
               />
             )}
           />
@@ -136,7 +150,10 @@ export default class App extends React.Component {
                 onIncrease={id => store.dispatch(increaseButton(id, 'dessert'))}
                 onDecrease={id => store.dispatch(decreaseButton(id, 'dessert'))}
                 title="Nachspeisen"
-                buttons={state.dessert}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'dessert'
+                )}
               />
             )}
           />
@@ -151,7 +168,10 @@ export default class App extends React.Component {
                   store.dispatch(decreaseButton(id, 'softdrinks'))
                 }
                 title="Softgetränke"
-                buttons={state.softdrinks}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'softdrinks'
+                )}
               />
             )}
           />
@@ -162,7 +182,10 @@ export default class App extends React.Component {
                 onIncrease={id => store.dispatch(increaseButton(id, 'alcohol'))}
                 onDecrease={id => store.dispatch(decreaseButton(id, 'alcohol'))}
                 title="Alkohol"
-                buttons={state.alcohol}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'alcohol'
+                )}
               />
             )}
           />
@@ -177,7 +200,10 @@ export default class App extends React.Component {
                   store.dispatch(decreaseButton(id, 'extrawuensche'))
                 }
                 title="Extrawünsche"
-                buttons={state.extrawuensche}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'extrawuensche'
+                )}
               />
             )}
           />
@@ -185,13 +211,9 @@ export default class App extends React.Component {
             path="/bestellen"
             render={() => (
               <div>
-                <BestellButton
-                  name="textarea"
-                  title={'Bestellung abschicken'}
-                />
+                <BestellButton title={'Bestellung abschicken'} state={state} />
               </div>
             )}
-          />
           />
         </Grid>
       </Router>
