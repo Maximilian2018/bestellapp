@@ -6,7 +6,8 @@ import {
   toggleButton,
   increaseButton,
   decreaseButton,
-  selectTable
+  selectTable,
+  deleteTable
 } from './actions'
 import ToggleButton from './components/ToggleButton'
 import DishPage from './components/DishPage'
@@ -21,7 +22,9 @@ import CounterButton from './components/CounterButton'
 import PropTypes from 'prop-types'
 import Softdrinks from './components/Softdrinks'
 import ExtraWuensche from './components/ExtraWuensche'
-
+import BezahlButton from './components/BezahlButton'
+import GridStyle from './components/BezahlButton'
+import { unlock } from 'react-icons-kit/ikons/unlock'
 const Grid = styled('div')`
   display: grid;
   grid-gap: 10px;
@@ -38,6 +41,9 @@ export default class App extends React.Component {
     store.subscribe(() => this.forceUpdate())
   }
   inputBestellButton = event => {
+    this.setState({ userInput: event.target.value })
+  }
+  inputBezahlButton = event => {
     this.setState({ userInput: event.target.value })
   }
   render() {
@@ -76,6 +82,11 @@ export default class App extends React.Component {
                 <div>
                   <Link style={{ background: 'green' }} to="/bestellen">
                     Bestellung abschicken
+                  </Link>
+                </div>
+                <div>
+                  <Link style={{ background: 'gold' }} to="/bezahlen">
+                    Bestellung bezahlen
                   </Link>
                 </div>
                 <div>
@@ -212,6 +223,20 @@ export default class App extends React.Component {
             render={() => (
               <div>
                 <BestellButton title={'Bestellung abschicken'} state={state} />
+              </div>
+            )}
+          />
+          <Route
+            path="/bezahlen"
+            render={() => (
+              <div>
+                <BezahlButton
+                  title={'Bestellung bezahlen'}
+                  state={state}
+                  deleteTable={e =>
+                    store.dispatch(deleteTable(state.selectedTable))
+                  }
+                />
               </div>
             )}
           />

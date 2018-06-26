@@ -54,6 +54,14 @@ const reducer = (state, action) => {
     case 'SELECT_TABLE':
       return { ...state, selectedTable: action.payload }
 
+    case 'DELETE_TABLE':
+      const newTables = { ...state.tables }
+      delete newTables[action.payload]
+      return {
+        ...state,
+        tables: newTables
+      }
+
     default:
       return state
   }

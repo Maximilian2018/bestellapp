@@ -25,3 +25,10 @@ export function selectTable(num) {
     payload: num
   }
 }
+
+export function deleteTable(num) {
+  return {
+    type: 'DELETE_TABLE',
+    payload: num
+  }
+}

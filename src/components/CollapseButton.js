@@ -4,6 +4,7 @@ import TableNumber from './TableNumber'
 import styled from 'react-emotion'
 import { css } from 'emotion'
 import BestellButton from './BestellButton'
+import LockIcon from '../Icon/LockIcon'
 
 const StyledHeader = styled('div')`
   display: flex;
@@ -61,6 +62,11 @@ export default class CollapseButton extends Component {
           <StyledButton onClick={this.toggle} style={{ marginBottom: '1rem' }}>
             <h1>Tischnummer</h1>
           </StyledButton>
+          <div />
+
+          <LockIcon />
+
+          <icon />
 
           <ShowTableNumber>{this.props.selectedTable}</ShowTableNumber>
         </StyledHeader>
