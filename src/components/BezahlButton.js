@@ -43,7 +43,7 @@ export default class BezahllButton extends Component {
               </div>
             )
           })}
-          <div>Zwischensumme: {sum}</div>
+          <div>Zwischensumme: {sum.toFixed(2)}</div>
           <em>19%: {(sum * 0.19).toFixed(2)}</em>
           <br />
           <strong>Gesamt €: {(sum * 1.19).toFixed(2)}</strong>

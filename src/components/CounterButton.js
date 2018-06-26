@@ -23,6 +23,7 @@ const SideButton = styled('button')`
   border: none;
   background: #ddd;
   font-size: 1.3em;
+  border-radius: 5px;
 `
 
 const CountValue = styled('span')`

@@ -8,8 +8,9 @@ import LockIcon from '../Icon/LockIcon'
 
 const StyledHeader = styled('div')`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: auto;
+  margin: 5px;
+  padding: 5px;
 `
 
 const StyledButton = styled('div')`
@@ -20,6 +21,9 @@ const StyledButton = styled('div')`
   height: 100%;
   color: white;
   background: grey;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
 `
 
 const TableNumberBox = styled('div')`
