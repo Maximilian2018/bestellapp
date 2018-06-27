@@ -79,7 +79,7 @@ export default class BezahllButton extends Component {
 
   render() {
     return (
-      <div>
+      
         <Link to="/">Zurück</Link>
         <h3>
           {this.props.title} (#{this.props.state.selectedTable})

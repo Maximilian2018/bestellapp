@@ -8,7 +8,7 @@ const StyledTableNumber = styled('div')`
   width: 75px;
   padding: 16px;
   margin: 10px;
-  background: ${props => (props.hasBooking ? 'hotpink' : 'grey')};
+  background: ${props => (props.hasBooking ? 'cornflowerblue' : 'lightgrey')};
   font-size: 1.6em;
   align-items: space-evenly;
   border-radius: 8px;
