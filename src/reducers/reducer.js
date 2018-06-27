@@ -1,11 +1,16 @@
 const reducer = (state, action) => {
+  let category
+  let selectedIndex
+  let selectedItem
+  let table
+  let oldCount
   switch (action.type) {
     case 'TOGGLE_BUTTON':
-      const category = action.payload.category
-      const selectedIndex = state[category].findIndex(
+      category = action.payload.category
+      selectedIndex = state[category].findIndex(
         button => button.id === action.payload.id
       )
-      const selectedItem = state[category][selectedIndex]
+      selectedItem = state[category][selectedIndex]
 
       return {
         ...state,
@@ -14,6 +19,47 @@ const reducer = (state, action) => {
           { ...selectedItem, isSelected: !selectedItem.isSelected },
           ...state[category].slice(selectedIndex + 1)
         ]
+      }
+
+    case 'INCREASE_BUTTON':
+      table = state.tables[state.selectedTable] || {}
+      oldCount = table[action.payload.id] || 0
+
+      return {
+        ...state,
+        tables: {
+          ...state.tables,
+          [state.selectedTable]: {
+            ...table,
+            [action.payload.id]: oldCount + 1
+          }
+        }
+      }
+
+    case 'DECREASE_BUTTON':
+      table = state.tables[state.selectedTable] || {}
+      oldCount = table[action.payload.id] || 0
+
+      return {
+        ...state,
+        tables: {
+          ...state.tables,
+          [state.selectedTable]: {
+            ...table,
+            [action.payload.id]: oldCount === 0 ? 0 : oldCount - 1
+          }
+        }
+      }
+
+    case 'SELECT_TABLE':
+      return { ...state, selectedTable: action.payload }
+
+    case 'DELETE_TABLE':
+      const newTables = { ...state.tables }
+      delete newTables[action.payload]
+      return {
+        ...state,
+        tables: newTables
       }
 
     default:

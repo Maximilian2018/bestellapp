@@ -1,6 +1,15 @@
 import uid from 'uid'
+import BestellButton from '../components/BestellButton'
+const initialState = {
+  items: [],
+  cartOpen: true,
+  total: 0
+}
 
 export default {
+  selectedTable: 1,
+  tables: {},
+  userInput: '',
   tableNumbers: [
     1,
     2,
@@ -12,6 +21,7 @@ export default {
     8,
 
     10,
+
     20,
     30,
     40,
@@ -27,63 +37,412 @@ export default {
     400
   ],
 
-  bestSeller: [
-    { text: 'Monday', isSelected: false, id: uid() },
-    { text: 'Tuesday', isSelected: false, id: uid() },
-    { text: 'Wednesday', isSelected: false, id: uid() },
-    { text: 'Thursday', isSelected: false, id: uid() },
-    { text: 'Friday', isSelected: false, id: uid() },
-    { text: 'Saturday', isSelected: false, id: uid() },
-    { text: 'Sunday', isSelected: false, id: uid() }
-  ],
-
-  starters: [
-    { text: 'Gazpacho', isSelected: false, id: uid() },
-    { text: 'Minestrone', isSelected: false, id: uid() },
-    { text: 'Vitello Tonnato', isSelected: false, id: uid() },
-    { text: 'Cheese Plate', isSelected: false, id: uid() },
-    { text: 'Egs Benedikt', isSelected: false, id: uid() },
-    { text: 'Fish Soup', isSelected: false, id: uid() },
-    { text: 'Antipasti mix', isSelected: false, id: uid() },
-    { text: 'Sommer Salad', isSelected: false, id: uid() },
-    { text: 'Sushi mix', isSelected: false, id: uid() }
-  ],
-
-  mainCourses: [
-    { text: 'Beef Filet', isSelected: false, id: uid() },
-    { text: 'Beef Kobe Steak', isSelected: false, id: uid() },
-    { text: 'Beef Wagyu', isSelected: false, id: uid() },
-    { text: 'Chicken Sommer', isSelected: false, id: uid() },
-    { text: 'Corn Chicken', isSelected: false, id: uid() },
-    { text: 'Grilled Tuna Steaks', isSelected: false, id: uid() },
-    { text: 'Grilled Snapper Asia-Style', isSelected: false, id: uid() },
-    { text: 'Beach Burger Sommer', isSelected: false, id: uid() },
-    { text: 'Salad Scallops ', isSelected: false, id: uid() }
-  ],
-
-  drinks: [
-    { text: 'Pitcher Heineken ', isSelected: false, id: uid() },
-    { text: 'Pitcher Becks ', isSelected: false, id: uid() },
-    { text: 'Pitcher Salitos', isSelected: false, id: uid() },
-    { text: 'Pitcher Astra', isSelected: false, id: uid() },
-    { text: 'White Wine', isSelected: false, id: uid() },
-    { text: 'Red Wine ', isSelected: false, id: uid() },
-    { text: 'Sparkling Wine', isSelected: false, id: uid() },
-    { text: 'Champagner', isSelected: false, id: uid() },
-    { text: 'Shoots', isSelected: false, id: uid() },
-    { text: 'Coktails', isSelected: false, id: uid() }
-  ],
-
-  dessert: [
-    { text: 'Margarita Cupcakes ', isSelected: false, id: uid() },
-    { text: 'Banana Pudding ', isSelected: false, id: uid() },
-    { text: 'Peanut Butter Cookie', isSelected: false, id: uid() },
-    { text: 'Pumpkin Pie Brownie ', isSelected: false, id: uid() },
-    { text: 'Cookie Dough Cheesecake', isSelected: false, id: uid() },
-    { text: 'Red Velvet Cake ', isSelected: false, id: uid() },
-    { text: 'Triple Chocolate Mousse', isSelected: false, id: uid() },
-    { text: 'Caramel Apple Cake', isSelected: false, id: uid() },
-    { text: 'Lemon Blueberry Cake', isSelected: false, id: uid() },
-    { text: 'Giant Oreo Cake', isSelected: false, id: uid() }
+  buttons: [
+    {
+      text: 'Gazpacho',
+      price: 8.5,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Sommer Salad',
+      price: 10.0,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Beef Kobe Steak',
+      price: 34.99,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Champagner',
+      price: 90.0,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Pitcher Salitos',
+      price: 18.99,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Grilled Snapper Asia-Style',
+      price: 32.5,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    {
+      text: 'Corn Chicken',
+      price: 24.6,
+      id: uid(),
+      category: 'bestSeller'
+    },
+    { text: 'Gazpacho', price: 8.5, count: 0, id: uid(), category: 'starters' },
+    {
+      text: 'Minestrone',
+      price: 9.2,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Vitello Tonnato',
+      price: 16.5,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Cheese Plate',
+      price: 19.0,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Egs Benedikt',
+      price: 12.8,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Fish Soup',
+      price: 12.99,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Antipasti mix',
+      price: 10.0,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Sommer Salad',
+      price: 11.99,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Sushi mix',
+      price: 18.99,
+      id: uid(),
+      category: 'starters'
+    },
+    {
+      text: 'Beef Filet',
+      price: 36.99,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Beef Kobe Steak',
+      price: 34.99,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Beef Wagyu',
+      price: 45.99,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Chicken Sommer',
+      price: 22.6,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Corn Chicken',
+      price: 24.6,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Grilled Tuna Steaks',
+      price: 32.99,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Grilled Snapper Asia-Style',
+      price: 32.5,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Beach Burger Sommer',
+      price: 15.0,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Salad Scallops ',
+      price: 19.0,
+      id: uid(),
+      category: 'mainCourses'
+    },
+    {
+      text: 'Margarita Cupcakes ',
+      price: 9.99,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Banana Pudding ',
+      price: 7.5,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Peanut Butter Cookie',
+      price: 4.5,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Pumpkin Pie Brownie ',
+      price: 4.5,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Cookie Dough Cheesecake',
+      price: 8.0,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Red Velvet Cake ',
+      price: 8.0,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Triple Chocolate Mousse',
+      price: 6.0,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Caramel Apple Cake',
+      price: 8.0,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Lemon Blueberry Cake',
+      price: 8.0,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Giant Oreo Cake',
+      price: 6.9,
+      id: uid(),
+      category: 'dessert'
+    },
+    {
+      text: 'Pitcher Heineken ',
+      price: 16.99,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Pitcher Becks ',
+      price: 18.99,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Pitcher Salitos',
+      price: 18.99,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Pitcher Astra',
+      price: 15.99,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'White Wine 0.75',
+      price: 22.5,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Red Wine 0,75l',
+      price: 22.5,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Sparkling Wine 0,75l',
+      price: 24.99,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Sparkling Wine 0,2l',
+      price: 7.5,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Champagner 0,75l',
+      price: 90.0,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Champagner 0,2l',
+      price: 15.0,
+      id: uid(),
+      category: 'alcohol'
+    },
+    { text: 'Shoots', price: 4.0, count: 0, id: uid(), category: 'alcohol' },
+    {
+      text: 'Coktail of the day',
+      price: 12.5,
+      id: uid(),
+      category: 'alcohol'
+    },
+    {
+      text: 'Flasche Wasser 0.75l mit ',
+      price: 4.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Flasche Wasser 0.75l ohne ',
+      price: 4.4,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Apfelschorle 0.3l',
+      price: 3.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Apfelschorle 0.5l',
+      price: 4.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Cola 0.3l',
+      price: 3.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Cola 0.5l',
+      price: 4.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Fanta 0.3l',
+      price: 3.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Fanta 0.5l',
+      price: 4.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Sprite 0.3l',
+      price: 3.0,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Sprite 0.5l',
+      price: 4.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Capuchino',
+      price: 3.8,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Latte Macciato',
+      price: 4.0,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Espresso',
+      price: 2.5,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Espresso double',
+      price: 3.8,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Home Coffee',
+      price: 3.0,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'Hot Milk with Honey',
+      price: 2.8,
+      id: uid(),
+      category: 'softdrinks'
+    },
+    {
+      text: 'extra Parmesan ',
+      price: 2.5,
+      id: uid(),
+      category: 'extrawuensche'
+    },
+    {
+      text: 'extra Chicken',
+      price: 7.5,
+      id: uid(),
+      category: 'extrawuensche'
+    },
+    {
+      text: 'extra Beef',
+      price: 12.0,
+      id: uid(),
+      category: 'extrawuensche'
+    },
+    {
+      text: 'extra Fisch',
+      price: 11.0,
+      id: uid(),
+      category: 'extrawuensche'
+    },
+    { text: 'mit Zitrone', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'ohne Koriander', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'ohne Gluten ', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'ohne Koffein', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'ohne Dressing', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'ohne Eiswürfel ', count: 0, id: uid(), category: 'extrawuensche' },
+    { text: 'extra Eiswürfel', count: 0, id: uid(), category: 'extrawuensche' },
+    {
+      text: 'extra Sahne',
+      price: 2.0,
+      id: uid(),
+      category: 'extrawuensche'
+    },
+    { text: 'ohne Sahne', count: 0, id: uid(), category: 'extrawuensche' }
   ]
 }

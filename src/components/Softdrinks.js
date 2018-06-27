@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
-import CounterButton from './CounterButton'
+import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
-import styled from 'react-emotion'
 
-export default class DishPage extends Component {
+export default class Softdrinks extends Component {
   render() {
     return (
       <div>
         <Link to="/">Zurück</Link>
         <h3>{this.props.title}</h3>
         {this.props.buttons.map(button => (
-          <CounterButton
+          <ToggleButton
             key={button.id}
             text={button.text}
             price={button.price}
-            onIncrease={e => this.props.onIncrease(button.id)}
-            onDecrease={e => this.props.onDecrease(button.id)}
-            count={(this.props.table && this.props.table[button.id]) || 0}
+            isSelected={button.isSelected}
+            toggle={e => this.props.onToggle(button.id)}
           />
         ))}
       </div>

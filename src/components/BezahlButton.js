@@ -1,36 +1,27 @@
 import React, { Component } from 'react'
 import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
-import CollapseButton from './CollapseButton'
 import styled from 'react-emotion'
 import MailIcon from '../Icon/MailIcon'
 
-const StyledButton = styled('div')`
+const GridStyle = styled('div')`
+  display: grid;
+  grid-gap: 10px;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+`
+const ToggleBezahlButtonStyle = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  height: 80px;
   color: white;
-  background: green;
-  padding: 20px 20px;
-  width: 90%;
-  margin: 0 auto;
-`
-const StyledArea = styled('textarea')`
-  display: block;
-  width: 90%;
-  margin: 40px auto;
-  height: 30vh;
-  border: 1px solid grey;
-`
-const StyledGrid = styled('div')`
-  display: grid;
-  grid-gap: 3px;
-  padding: 0 20px;
-  margin-top: 20px;
+  border-radius: 20px;
+  background: ${props => (props.isSelected ? 'cornflowerblue' : 'gold')};
 `
 
-export default class BestellButton extends Component {
+export default class BezahllButton extends Component {
   state = {
     isOrdered: false
   }
@@ -41,7 +32,7 @@ export default class BestellButton extends Component {
     let sum = 0
     if (currentTable) {
       return (
-        <StyledGrid>
+        <GridStyle>
           {Object.keys(currentTable).map(buttonId => {
             const count = currentTable[buttonId]
             const foundButton = buttons.find(button => button.id === buttonId)
@@ -56,7 +47,7 @@ export default class BestellButton extends Component {
           <em>19%: {(sum * 0.19).toFixed(2)}</em>
           <br />
           <strong>Gesamt €: {(sum * 1.19).toFixed(2)}</strong>
-        </StyledGrid>
+        </GridStyle>
       )
     }
   }
@@ -64,20 +55,23 @@ export default class BestellButton extends Component {
   render() {
     return (
       <div>
-        <div>
-          <Link to="/">Zurück</Link>
-          <h3>
-            {this.props.title} (#{this.props.state.selectedTable})
-          </h3>
-          <StyledButton onClick={e => this.setState({ isOrdered: true })}>
-            Bestellen
-          </StyledButton>
-        </div>
+        <Link to="/">Zurück</Link>
+        <h3>
+          {this.props.title} (#{this.props.state.selectedTable})
+        </h3>
+        <ToggleBezahlButtonStyle
+          onClick={this.props.deleteTable}
+          style={{ marginBottom: '1rem' }}
+        >
+          {' '}
+          Bezahlen
+        </ToggleBezahlButtonStyle>
         {this.renderBill()}
-        <div>
-          <StyledArea placeholder="Notizen" />
-        </div>
-        <button on click={e => this.setState({ ispayed: true })} />
+
+        <button on click={e => this.setState({ ispayed: true })}>
+          <MailIcon /> Rechnung Email
+        </button>
+        <icon />
       </div>
     )
   }

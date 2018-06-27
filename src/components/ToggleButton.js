@@ -16,7 +16,7 @@ export default class ToggleButton extends Component {
         isSelected={this.props.isSelected}
         onClick={this.props.toggle}
       >
-        {this.props.text}
+        {this.props.text} ({this.props.price})
       </StyledButton>
     )
   }

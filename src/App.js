@@ -2,31 +2,50 @@ import React from 'react'
 import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import initialState from './reducers/initialState'
-import { toggleButton } from './actions'
+import {
+  toggleButton,
+  increaseButton,
+  decreaseButton,
+  selectTable,
+  deleteTable
+} from './actions'
 import ToggleButton from './components/ToggleButton'
 import DishPage from './components/DishPage'
 import CollapseButton from './components/CollapseButton'
 import styled from 'react-emotion'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import drinks from './components/drinksList'
+import alcohol from './components/alcohol'
 import bestSeller from './components/bestSeller'
 import Dessert from './components/Dessert'
-import './index.css'
-//import CounterButton from './CounterButton'
-//import PropTypes from 'prop-types'
-
+import BestellButton from './components/BestellButton'
+import CounterButton from './components/CounterButton'
+import PropTypes from 'prop-types'
+import Softdrinks from './components/Softdrinks'
+import ExtraWuensche from './components/ExtraWuensche'
+import BezahlButton from './components/BezahlButton'
+import GridStyle from './components/BezahlButton'
+import { unlock } from 'react-icons-kit/ikons/unlock'
 const Grid = styled('div')`
   display: grid;
   grid-gap: 10px;
 `
 
-const store = createStore(reducer, initialState)
+const store = createStore(
+  reducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 export default class App extends React.Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
   }
-
+  inputBestellButton = event => {
+    this.setState({ userInput: event.target.value })
+  }
+  inputBezahlButton = event => {
+    this.setState({ userInput: event.target.value })
+  }
   render() {
     const state = store.getState()
     return (
@@ -37,7 +56,11 @@ export default class App extends React.Component {
             path="/"
             render={() => (
               <div>
-                <CollapseButton tableNumbers={state.tableNumbers} />{' '}
+                <CollapseButton
+                  tableNumbers={state.tableNumbers}
+                  onChangeTable={id => store.dispatch(selectTable(id))}
+                  selectedTable={state.selectedTable}
+                />{' '}
                 <div>
                   <Link to="/bestSeller">Meist bestellt</Link>
                 </div>
@@ -48,10 +71,31 @@ export default class App extends React.Component {
                   <Link to="/main-courses">Hauptspeisen</Link>
                 </div>
                 <div>
-                  <Link to="/drinks">Getränke</Link>
+                  <Link to="/dessert">Nachtisch</Link>
                 </div>
                 <div>
-                  <Link to="/Dessert">Nachtisch</Link>
+                  <Link to="/softdrinks">Softdrinks</Link>
+                </div>
+                <div>
+                  <Link to="/alcohol">Alkohol</Link>
+                </div>
+                <div>
+                  <Link style={{ background: 'green' }} to="/bestellen">
+                    Bestellung abschicken
+                  </Link>
+                </div>
+                <div>
+                  <Link style={{ background: 'gold' }} to="/bezahlen">
+                    Bestellung bezahlen
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    style={{ background: 'cornflowerblue' }}
+                    to="/extrawuensche"
+                  >
+                    Extrawünsche
+                  </Link>
                 </div>
               </div>
             )}
@@ -60,53 +104,140 @@ export default class App extends React.Component {
             path="/bestSeller"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'bestSeller'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'bestSeller'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'bestSeller'))
+                }
                 title="Meist bestellt"
-                buttons={state.bestSeller}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'bestSeller'
+                )}
               />
             )}
           />
-
           <Route
             path="/starters"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'starters'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'starters'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'starters'))
+                }
                 title="Vorspeisen"
-                buttons={state.starters}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'starters'
+                )}
               />
             )}
           />
-
           <Route
             path="/main-courses"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'mainCourses'))}
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'mainCourses'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'mainCourses'))
+                }
                 title="Hauptspeisen"
-                buttons={state.mainCourses}
-              />
-            )}
-          />
-
-          <Route
-            path="/drinks"
-            render={() => (
-              <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'drinks'))}
-                title="drinks"
-                buttons={state.drinks}
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'mainCourses'
+                )}
               />
             )}
           />
           <Route
-            path="/Dessert"
+            path="/dessert"
             render={() => (
               <DishPage
-                onToggle={id => store.dispatch(toggleButton(id, 'Dessert'))}
-                title="Nachtisch"
-                buttons={state.dessert}
+                onIncrease={id => store.dispatch(increaseButton(id, 'dessert'))}
+                onDecrease={id => store.dispatch(decreaseButton(id, 'dessert'))}
+                title="Nachspeisen"
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'dessert'
+                )}
               />
+            )}
+          />
+          <Route
+            path="/softdrinks"
+            render={() => (
+              <DishPage
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'softdrinks'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'softdrinks'))
+                }
+                title="Softgetränke"
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'softdrinks'
+                )}
+              />
+            )}
+          />
+          <Route
+            path="/alcohol"
+            render={() => (
+              <DishPage
+                onIncrease={id => store.dispatch(increaseButton(id, 'alcohol'))}
+                onDecrease={id => store.dispatch(decreaseButton(id, 'alcohol'))}
+                title="Alkohol"
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'alcohol'
+                )}
+              />
+            )}
+          />
+          <Route
+            path="/Extrawuensche"
+            render={() => (
+              <DishPage
+                onIncrease={id =>
+                  store.dispatch(increaseButton(id, 'extrawuensche'))
+                }
+                onDecrease={id =>
+                  store.dispatch(decreaseButton(id, 'extrawuensche'))
+                }
+                title="Extrawünsche"
+                table={state.tables[state.selectedTable] || {}}
+                buttons={state.buttons.filter(
+                  item => item.category === 'extrawuensche'
+                )}
+              />
+            )}
+          />
+          <Route
+            path="/bestellen"
+            render={() => (
+              <div>
+                <BestellButton title={'Bestellung abschicken'} state={state} />
+              </div>
+            )}
+          />
+          <Route
+            path="/bezahlen"
+            render={() => (
+              <div>
+                <BezahlButton
+                  title={'Bestellung bezahlen'}
+                  state={state}
+                  deleteTable={e =>
+                    store.dispatch(deleteTable(state.selectedTable))
+                  }
+                />
+              </div>
             )}
           />
         </Grid>
