@@ -60,6 +60,7 @@ export default class App extends React.Component {
                   tableNumbers={state.tableNumbers}
                   onChangeTable={id => store.dispatch(selectTable(id))}
                   selectedTable={state.selectedTable}
+                  bookedTables={state.tables}
                 />{' '}
                 <div>
                   <Link to="/bestSeller">Meist bestellt</Link>
@@ -80,6 +81,14 @@ export default class App extends React.Component {
                   <Link to="/alcohol">Alkohol</Link>
                 </div>
                 <div>
+                  <Link
+                    style={{ background: 'cornflowerblue' }}
+                    to="/extrawuensche"
+                  >
+                    Extrawünsche
+                  </Link>
+                </div>
+                <div>
                   <Link style={{ background: 'green' }} to="/bestellen">
                     Bestellung abschicken
                   </Link>
@@ -87,14 +96,6 @@ export default class App extends React.Component {
                 <div>
                   <Link style={{ background: 'gold' }} to="/bezahlen">
                     Bestellung bezahlen
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    style={{ background: 'cornflowerblue' }}
-                    to="/extrawuensche"
-                  >
-                    Extrawünsche
                   </Link>
                 </div>
               </div>

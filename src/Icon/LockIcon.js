@@ -4,6 +4,6 @@ import { unlock } from 'react-icons-kit/ikons/unlock'
 
 export default class LockIcon extends Component {
   render() {
-    return <Icon size={'10%'} icon={unlock} style={{ cursor: 'pointer' }} />
+    return <Icon size={'70%'} icon={unlock} style={{ cursor: 'pointer' }} />
   }
 }

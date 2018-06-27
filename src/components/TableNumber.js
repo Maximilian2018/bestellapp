@@ -8,10 +8,10 @@ const StyledTableNumber = styled('div')`
   width: 75px;
   padding: 16px;
   margin: 10px;
-  background: grey;
+  background: ${props => (props.hasBooking ? 'hotpink' : 'grey')};
   font-size: 1.6em;
   align-items: space-evenly;
-  border-radius: 5px;
+  border-radius: 8px;
 `
 
 export default class TableNumber extends Component {
@@ -21,7 +21,10 @@ export default class TableNumber extends Component {
   }
   render() {
     return (
-      <StyledTableNumber onClick={this.selectTable}>
+      <StyledTableNumber
+        onClick={this.selectTable}
+        hasBooking={this.props.hasBooking}
+      >
         {this.props.tableNumber}
       </StyledTableNumber>
     )

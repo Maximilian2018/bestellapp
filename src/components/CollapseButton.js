@@ -8,8 +8,9 @@ import LockIcon from '../Icon/LockIcon'
 
 const StyledHeader = styled('div')`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: auto;
+  margin: 5px;
+  padding: 5px;
 `
 
 const StyledButton = styled('div')`
@@ -20,6 +21,9 @@ const StyledButton = styled('div')`
   height: 100%;
   color: white;
   background: grey;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
 `
 
 const TableNumberBox = styled('div')`
@@ -31,13 +35,15 @@ const TableNumberBox = styled('div')`
 
 const ShowTableNumber = styled('div')`
   background-color: blue;
-  width: center;
-  height: center;
-  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
   color: white;
+  margin: 5px;
   font-size: 1.6em;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
 `
 
 export default class CollapseButton extends Component {
@@ -81,6 +87,7 @@ export default class CollapseButton extends Component {
                     toogle={this.toggle}
                     selectTable={this.selectTable}
                     getTableNumber={this.getTableNumber}
+                    hasBooking={!!this.props.bookedTables[tableNumber]}
                   />
                 ))}
               </TableNumberBox>

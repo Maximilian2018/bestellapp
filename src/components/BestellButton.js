@@ -15,6 +15,7 @@ const StyledButton = styled('div')`
   padding: 20px 20px;
   width: 90%;
   margin: 0 auto;
+  border-radius: 10px;
 `
 const StyledArea = styled('textarea')`
   display: block;
@@ -48,12 +49,13 @@ export default class BestellButton extends Component {
             sum += count * foundButton.price
             return (
               <div key={buttonId}>
-                {foundButton.text}: {count} x {foundButton.price.toFixed(2)}
+                {foundButton.text}: {count} x {foundButton.price.toFixe}
               </div>
             )
           })}
-          <div>Zwischensumme: {sum}</div>
-          <em>19%: {(sum * 0.19).toFixed(2)}</em>
+
+          <div>Zwischensumme: {sum.toFixed(2)}</div>
+          <em>Mehrwertsteuer:19% {(sum * 0.19).toFixed(2)}</em>
           <br />
           <strong>Gesamt €: {(sum * 1.19).toFixed(2)}</strong>
         </StyledGrid>
