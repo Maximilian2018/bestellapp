@@ -3,7 +3,6 @@ import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
 import styled from 'react-emotion'
 import MailIcon from '../Icon/MailIcon'
-import CardIcon from '../Icon/Card'
 import Googlepay from '../Icon/Googlepay'
 
 const GridStyle = styled('div')`
@@ -68,8 +67,9 @@ export default class BezahllButton extends Component {
             )
           })}
 
-          <div>Zwischensumme: {sum.toFixed(2)}</div>
-          <em>Mehrwertsteuer19%: {(sum * 0.19).toFixed(2)}</em>
+          <div>Zwischensumme €: {sum.toFixed(2)}</div>
+          <em>Mehrwertsteuer19%: {(sum * 0.19).toFixed(2)}€</em>
+          <em>Tipp: 0.5% </em>
           <br />
           <strong>Gesamt €: {(sum * 1.19).toFixed(2)}</strong>
         </GridStyle>
@@ -79,7 +79,7 @@ export default class BezahllButton extends Component {
 
   render() {
     return (
-      
+      <div>
         <Link to="/">Zurück</Link>
         <h3>
           {this.props.title} (#{this.props.state.selectedTable})
