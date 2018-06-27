@@ -69,7 +69,7 @@ export default {
       category: 'bestSeller'
     },
     {
-      text: 'Grilled Snapper Asia-Style',
+      text: 'Grilled Snapper ',
       price: 32.5,
       id: uid(),
       category: 'bestSeller'
@@ -166,7 +166,7 @@ export default {
       category: 'mainCourses'
     },
     {
-      text: 'Grilled Snapper Asia-Style',
+      text: 'Grilled Snapper ',
       price: 32.5,
       id: uid(),
       category: 'mainCourses'

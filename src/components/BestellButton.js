@@ -15,6 +15,7 @@ const StyledButton = styled('div')`
   padding: 20px 20px;
   width: 90%;
   margin: 0 auto;
+  border-radius: 10px;
 `
 const StyledArea = styled('textarea')`
   display: block;

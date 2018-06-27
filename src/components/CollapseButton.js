@@ -35,13 +35,15 @@ const TableNumberBox = styled('div')`
 
 const ShowTableNumber = styled('div')`
   background-color: blue;
-  width: center;
-  height: center;
-  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
   color: white;
+  margin: 5px;
   font-size: 1.6em;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
 `
 
 export default class CollapseButton extends Component {
@@ -85,6 +87,7 @@ export default class CollapseButton extends Component {
                     toogle={this.toggle}
                     selectTable={this.selectTable}
                     getTableNumber={this.getTableNumber}
+                    hasBooking={!!this.props.bookedTables[tableNumber]}
                   />
                 ))}
               </TableNumberBox>

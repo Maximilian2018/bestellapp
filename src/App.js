@@ -60,6 +60,7 @@ export default class App extends React.Component {
                   tableNumbers={state.tableNumbers}
                   onChangeTable={id => store.dispatch(selectTable(id))}
                   selectedTable={state.selectedTable}
+                  bookedTables={state.tables}
                 />{' '}
                 <div>
                   <Link to="/bestSeller">Meist bestellt</Link>
