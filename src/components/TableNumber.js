@@ -11,7 +11,7 @@ const StyledTableNumber = styled('div')`
   background: grey;
   font-size: 1.6em;
   align-items: space-evenly;
-  border-radius: 5px;
+  border-radius: 8px;
 `
 
 export default class TableNumber extends Component {

@@ -3,6 +3,7 @@ import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
 import styled from 'react-emotion'
 import MailIcon from '../Icon/MailIcon'
+import CardIcon from '../Icon/Card'
 
 const GridStyle = styled('div')`
   display: grid;
@@ -61,7 +62,7 @@ export default class BezahllButton extends Component {
         </h3>
         <ToggleBezahlButtonStyle
           onClick={this.props.deleteTable}
-          style={{ marginBottom: '1rem' }}
+          style={{ marginBottom: '2rem' }}
         >
           {' '}
           Bezahlen
@@ -72,6 +73,10 @@ export default class BezahllButton extends Component {
           <MailIcon /> Rechnung Email
         </button>
         <icon />
+        <br />
+        <button on click={e => this.setState({ ispayed: false })} />
+        <CardIcon />
+        <pic />
       </div>
     )
   }
