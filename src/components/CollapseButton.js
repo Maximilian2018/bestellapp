@@ -34,16 +34,17 @@ const TableNumberBox = styled('div')`
 `
 
 const ShowTableNumber = styled('div')`
-  background-color: blue;
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  color: white;
-  margin: 5px;
-  font-size: 1.6em;
+  display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background: cornflowerblue;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 9px;
+  font-size: 2rem;
 `
 
 export default class CollapseButton extends Component {

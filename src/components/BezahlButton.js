@@ -3,8 +3,8 @@ import ToggleButton from './ToggleButton'
 import { Link } from 'react-router-dom'
 import styled from 'react-emotion'
 import MailIcon from '../Icon/MailIcon'
-import CardIcon from '../Icon/Card'
 import Googlepay from '../Icon/Googlepay'
+import EuroIcon from '../Icon/EuroIcon'
 
 const GridStyle = styled('div')`
   display: grid;
@@ -24,7 +24,7 @@ const ToggleBezahlButtonStyle = styled('div')`
 `
 
 const PayButtons = styled('div')`
-  margin-top: 250px;
+  margin-top: 50px;
   display: flex;
   justify-content: spay-between;
   width: 100%;
@@ -43,6 +43,10 @@ const Tipp = styled('box')`
   height: 50px;
   border: 2px solid grey;
   background: ${props => (props.isSelected ? 'blue' : 'cornflowerblue')};
+`
+
+const Hr = styled('hr')`
+  border-color: 1px solid black;
 `
 
 export default class BezahllButton extends Component {
@@ -67,11 +71,12 @@ export default class BezahllButton extends Component {
               </div>
             )
           })}
+          <hr className={'hr'} />
+          <div>Zwischensumme €: {sum.toFixed(2)}</div>
+          <em>Mehrwertsteuer 19 %: {(sum * 0.19).toFixed(2)}€</em>
+          <em>Tipp 5 %</em>
 
-          <div>Zwischensumme: {sum.toFixed(2)}</div>
-          <em>Mehrwertsteuer19%: {(sum * 0.19).toFixed(2)}</em>
-          <br />
-          <strong>Gesamt €: {(sum * 1.19).toFixed(2)}</strong>
+          <strong>Gesamt €: {(sum * 1.19 * 1.05).toFixed(2)}</strong>
         </GridStyle>
       )
     }
@@ -112,8 +117,12 @@ export default class BezahllButton extends Component {
             <MailIcon /> Rechnung Email
           </button>
           <icon />
+          <credit_card />
+          <EuroIcon />
           <Googlepay />
         </PayButtons>
+
+        <button />
       </div>
     )
   }
